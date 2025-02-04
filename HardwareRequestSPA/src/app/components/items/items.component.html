@@ -1,0 +1,12 @@
+
+<div>
+    <h2> {{ typeName }}</h2>
+  </div>
+  
+  <br/>
+
+<div class="items-container">
+  <div *ngFor="let item of items" class="items-card">
+    <h3 [routerLink]="['/request', item]" >{{ item }}</h3>
+  </div>
+</div> 

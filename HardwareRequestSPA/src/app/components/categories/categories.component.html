@@ -1,0 +1,7 @@
+
+<div class="category-container">
+    <div *ngFor="let item of categories" class="category-card">
+        <img [routerLink]="['/category', item]" [src]="'assets/images/' + item + '.jpg'" alt="Category image" class="category-image"/>
+        <h3 [routerLink]="['/category', item]" style="color:rgb(75, 47, 5)">{{item}}</h3>
+    </div>
+  </div>
