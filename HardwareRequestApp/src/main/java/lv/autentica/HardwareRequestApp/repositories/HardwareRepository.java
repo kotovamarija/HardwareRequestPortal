@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Repository
 public interface HardwareRepository extends JpaRepository<Hardware, Long> {
-List<Hardware> findByCategory(Category category);
+//List<Hardware> findByCategory(Category category);
 List<Hardware> findByType(Type type);
 Optional<Hardware> findByName(String name);
 

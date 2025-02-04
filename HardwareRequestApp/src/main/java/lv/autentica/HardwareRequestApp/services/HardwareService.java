@@ -34,9 +34,9 @@ public class HardwareService {
         hardwareRepository.save(hardware);
     }
 
-    public List<Hardware> findByCategory(Category category) {
-        return hardwareRepository.findByCategory(category);
-    }
+//    public List<Hardware> findByCategory(Category category) {
+//        return hardwareRepository.findByCategory(category);
+//    }
 
     public List<Hardware> findByType(Type type) {
         return hardwareRepository.findByType(type);

@@ -91,10 +91,13 @@ public class NavigationController {
     @GetMapping("/{chosenType}")
     public List<String> getItems(@PathVariable String chosenType) {
         System.out.println("HELLO FROM CONTROLLERS / GET ITEMS...");
-                System.out.println("the type: " + chosenType);
+                System.out.println("THIS FUCKING SHIT - the type: " + chosenType.replaceAll(" ", "_"));
 //                System.out.println("the item:" + hardwareService.findByType(Type.valueOf("TABLETS")));
-               return hardwareService.findByType(Type.valueOf(chosenType)).stream().map(hardware -> hardware.getName()).collect(Collectors.toList());
+               return hardwareService.findByType(Type.valueOf(chosenType.replaceAll(" ", "_"))).stream().map(hardware -> hardware.getName()).collect(Collectors.toList());
     }
+
+
+
 
     @PostMapping
     public ResponseEntity<String> createUser(@RequestBody String type){
