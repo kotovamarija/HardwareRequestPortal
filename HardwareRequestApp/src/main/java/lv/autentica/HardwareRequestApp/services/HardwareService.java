@@ -32,11 +32,37 @@ public class HardwareService {
     @Transactional
     public void save(Hardware hardware) {
         hardwareRepository.save(hardware);
-    }
+    }Users
 
-//    public List<Hardware> findByCategory(Category category) {
-//        return hardwareRepository.findByCategory(category);
-//    }
+    public List<String> findTypesByCategory(String category) {
+
+        category = category.trim().replace(" ", "_");
+        System.out.println("AND HERRRRRE..." + category);
+
+        Category categoryEnum = null;
+
+        try {
+            categoryEnum = Category.valueOf(category);
+        } catch (IllegalArgumentException e) {
+            System.err.println("Invalid category: " + category);
+            return List.of(); // или бросить исключение, в зависимости от вашей логики
+        }
+
+
+        System.out.println("AND HERRRRRE COMES MY ENUM CATEGORY..." + categoryEnum.name());
+
+        System.out.println(hardwareRepository.findByCategory(categoryEnum)
+                .stream()
+                .map(hardware -> hardware.getType().name().replaceAll("_"," "))
+                .distinct()
+                .toList());
+
+        return hardwareRepository.findByCategory(categoryEnum)
+                .stream()
+                .map(hardware -> hardware.getType().name().replaceAll("_"," "))
+                .distinct()
+                .toList();
+    }
 
     public List<Hardware> findByType(Type type) {
         return hardwareRepository.findByType(type);
