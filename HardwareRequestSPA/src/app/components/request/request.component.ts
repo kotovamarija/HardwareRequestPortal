@@ -18,6 +18,7 @@ export class RequestComponent implements OnInit{
   reason: string = '';
   username: string = '';
   password: string = '';
+  trackingNumber: string = 'ooo';
 
 
   constructor( 
@@ -33,21 +34,33 @@ export class RequestComponent implements OnInit{
   }
 
   addRequest(): void {
-  const newRequestDTO = {
-    itemName: this.itemName,
-    reason: this.reason,
-    username: this.username,
-    password: this.password
-  };
-  console.log(newRequestDTO);
+
+    let newRequestDTO: RequestDTO = new RequestDTO(
+      this.itemName,
+      this.reason,
+      this.username,
+      this.password,
+      this.trackingNumber
+    );
+
+  // const newRequestDTO = {
+  //   itemName: this.itemName,
+  //   reason: this.reason,
+  //   username: this.username,
+  //   password: this.password,
+  //   trackingNumber: this.trackingNumber
+  // };
+
+  console.log('READY TO BE SENT...' + newRequestDTO.trackingNumber);
 
   this.requestService.setUsername(this.username);
 
   this.requestService.addRequest(newRequestDTO)
   .subscribe({
-    next: (response) => console.log("The response from server:", response),
+    next: (response) => this.requestService.setTrackingNumber(response.trackingNumber),
     error: (error) => console.error("Error message:", error)
   });
+  this.requestService.setTrackingNumber(this.trackingNumber);
 
   // this.clearRequest();
 }

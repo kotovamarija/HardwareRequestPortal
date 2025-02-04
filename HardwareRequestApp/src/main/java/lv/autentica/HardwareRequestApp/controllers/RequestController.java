@@ -31,11 +31,11 @@ public class RequestController {
 
         Request request = new Request();
 
+//        request.setTrackingNumber(requestDTO.getTrackingNumber());
+        requestDTO.setTrackingNumber(request.getTrackingNumber());
         request.setReason(requestDTO.getReason());
         request.setHardware(hardwareService.findByName(requestDTO.getItemName()));
         request.setUser(userService.getUserByUsername(requestDTO.getUsername())); // AND PASSWORD - should include password in common method
-
-        System.out.println("Printing out REQUEST: " + request);
 
         requestService.save(request);
         return ResponseEntity.ok(requestDTO);

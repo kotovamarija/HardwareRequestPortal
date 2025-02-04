@@ -12,6 +12,7 @@ import { RequestService } from '../../services/request.service';
 })
 export class RequestConfirmationComponent implements OnInit {
 
+  trackingNumber: string = '';
   username: string = '';
 
   constructor(private requestService: RequestService){}
@@ -22,5 +23,12 @@ export class RequestConfirmationComponent implements OnInit {
     this.username = username;
     }
   });
+
+  this.requestService.trackingNumber$.subscribe(trackingNumber => {
+    if (trackingNumber) {
+    this.trackingNumber = trackingNumber;
+    }
+  });
+
   }
 }

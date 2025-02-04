@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RequestDTO } from '../models/request.model';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { RequestDTO } from '../models/request.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,17 @@ export class RequestService {
   }
   getUsername(): string {
     return this.usernameSubject.value;
+  }
+
+  
+  // -------
+  private trackingNumberSubject = new BehaviorSubject<string>('');
+  trackingNumber$ = this.trackingNumberSubject.asObservable();
+  setTrackingNumber(trackingNumber: string): void {
+    this.trackingNumberSubject.next(trackingNumber);
+  }
+  getTrackingNumber(): string {
+    return this.trackingNumberSubject.value;
   }
 
 

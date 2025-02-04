@@ -17,6 +17,8 @@ public class RequestDTO {
 
     private String password;
 
+    private String trackingNumber;
+
     public RequestDTO() {
 
     }
@@ -47,6 +49,14 @@ public class RequestDTO {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getTrackingNumber() {
+        return trackingNumber;
+    }
+
+    public void setTrackingNumber(String trackingNumber) {
+        this.trackingNumber = trackingNumber;
     }
 
     public void setPassword(String password) {

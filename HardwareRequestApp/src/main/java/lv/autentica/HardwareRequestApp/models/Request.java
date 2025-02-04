@@ -25,15 +25,21 @@ public class Request {
     @Column(name = "reason")
     private String reason;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private Status status;
 
+    @Column(name = "tracking_number")
+    private String trackingNumber;
+
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     public Request() {
         this.status = Status.SUBMITTED;
         this.createdAt = LocalDateTime.now();
+        this.trackingNumber = "LV2025" + System.currentTimeMillis();
     }
 
     public Long getId() {
@@ -86,6 +92,22 @@ public class Request {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getTrackingNumber() {
+        return trackingNumber;
+    }
+
+    public void setTrackingNumber(String trackingNumber) {
+        this.trackingNumber = trackingNumber;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override
