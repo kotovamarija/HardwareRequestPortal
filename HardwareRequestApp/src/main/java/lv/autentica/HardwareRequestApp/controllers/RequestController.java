@@ -28,8 +28,6 @@ public class RequestController {
     @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RequestDTO> createNewRequest(@RequestBody RequestDTO requestDTO) {
         System.out.println("Получен JSON: " + requestDTO);
-        System.out.println("Starting...");
-        System.out.println("Printing out full DTO: " + requestDTO);
 
         Request request = new Request();
 

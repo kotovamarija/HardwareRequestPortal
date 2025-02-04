@@ -33,24 +33,28 @@ export class RequestComponent implements OnInit{
   }
 
   addRequest(): void {
-  
-  // const newRequestDTO: RequestDTO = new RequestDTO(this.itemName, this.reason, this.username, this.password);
   const newRequestDTO = {
     itemName: this.itemName,
     reason: this.reason,
     username: this.username,
     password: this.password
   };
-  console.log("Данные перед отправкой:", newRequestDTO);
-  
-  console.log(this.itemName, this.reason, this.username, this.password);
   console.log(newRequestDTO);
-  // this.requestService.addRequest(newRequestDTO);
 
-  this.requestService.addRequest(newRequestDTO).subscribe({
-    next: (response) => console.log("Ответ от сервера:", response),
-    error: (error) => console.error("Ошибка запроса:", error)
+  this.requestService.setUsername(this.username);
+
+  this.requestService.addRequest(newRequestDTO)
+  .subscribe({
+    next: (response) => console.log("The response from server:", response),
+    error: (error) => console.error("Error message:", error)
   });
 
+  // this.clearRequest();
 }
+
+  // clearRequest() {
+  //   this.reason = '';
+  //   this.username = '';
+  //   this.password = '';
+  // }
 }

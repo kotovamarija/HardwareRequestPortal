@@ -17,9 +17,9 @@ export class NavigationService {
     return this.http.get<string[]>(`http://localhost:8080/navig/categories/${category}`);
   }
 
-  sendChosenType(type: string): Observable<string> {
-    return this.http.post<string>(`http://localhost:8080/navig/${type}`, type);
-  }
+  // sendChosenType(type: string): Observable<string> {
+  //   return this.http.post<string>(`http://localhost:8080/navig/${type}`, type);
+  // }
 
   getItemsByType(type: string): Observable<string[]> {
     console.log('THIS IS PRINTING OUT FROM getItemsByType METHOD...')

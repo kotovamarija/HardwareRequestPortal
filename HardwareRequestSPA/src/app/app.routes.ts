@@ -46,4 +46,11 @@ export const routes: Routes = [
     },
 },
 
+{
+    path: 'requestConfirmation',
+    loadComponent: () => {
+        return import('./components/request-confirmation/request-confirmation.component').then((m) => m.RequestConfirmationComponent)
+    },
+},
+
 ];
