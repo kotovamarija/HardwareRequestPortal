@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lv.autentica.HardwareRequestApp.models.enums.Type;
 import lv.autentica.HardwareRequestApp.models.enums.Category;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Hardware")
 public class Hardware {
@@ -19,8 +21,10 @@ public class Hardware {
     private Type type;
     private String name; //  long name including characteristics
 
-    @OneToOne(mappedBy = "hardware")
-    private Request request;
+    @OneToMany(mappedBy = "hardware")
+//    @OneToOne(mappedBy = "hardware")
+//    private Request request;
+    private List<Request> request;
 
     public Hardware() {}
 
@@ -44,13 +48,21 @@ public class Hardware {
         this.type = type;
     }
 
-    public Request getRequest() {
+    public List<Request> getRequest() {
         return request;
     }
 
-    public void setRequest(Request request) {
+    public void setRequest(List<Request> request) {
         this.request = request;
     }
+
+    //    public Request getRequest() {
+//        return request;
+//    }
+//
+//    public void setRequest(Request request) {
+//        this.request = request;
+//    }
 
     public String getName() {
         return name;

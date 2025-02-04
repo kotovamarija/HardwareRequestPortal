@@ -17,7 +17,8 @@ public class Request {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @OneToOne
+    @ManyToOne // to solve the error (More than one row with the given identifier was found)
+//    @OneToOne
     @JoinColumn(name = "hardware_id", referencedColumnName = "id")
     private Hardware hardware;
 
