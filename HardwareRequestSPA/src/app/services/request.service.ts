@@ -14,6 +14,10 @@ export class RequestService {
     return this.http.post<any>(`http://localhost:8080/request/new`, requestDTO);}
 
 
+    track(trackingNumber: string): Observable<{ status: string }> {
+      return this.http.post<{ status: string }>(`http://localhost:8080/request/track`, trackingNumber);}
+
+
   private usernameSubject = new BehaviorSubject<string>('');
   username$ = this.usernameSubject.asObservable();
   setUsername(username: string): void {

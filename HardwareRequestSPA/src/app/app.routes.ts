@@ -53,4 +53,12 @@ export const routes: Routes = [
     },
 },
 
+{
+    path: 'tracking',
+    loadComponent: () => {
+        console.log('here...')
+        return import('./components/tracking/tracking.component').then((m) => m.TrackingComponent)
+    },
+},
+
 ];

@@ -1,0 +1,15 @@
+<p>tracking works!</p>
+<br/>
+<div class="tracking-container">
+  <br/>
+
+  <div class="tracking-card">
+    Enter tracking number: <input [(ngModel)]="trackingNumber" type="text"><br/><br/>
+    <button (click)="track()">Track request!</button>
+
+    <p *ngIf="status" style="color: rgba(7, 94, 11, 0.644);">Request status: {{ status }}</p>
+    <p *ngIf="errorMessage" style="color: rgba(211, 32, 32, 0.644);">{{ errorMessage }}</p>
+
+  </div>
+  </div>
+  <br/>

@@ -4,13 +4,17 @@ import lv.autentica.HardwareRequestApp.DTO.ErrorResponse;
 import lv.autentica.HardwareRequestApp.DTO.RequestDTO;
 import lv.autentica.HardwareRequestApp.models.Request;
 import lv.autentica.HardwareRequestApp.models.User;
-import lv.autentica.HardwareRequestApp.repositories.RequestRepository;
 import lv.autentica.HardwareRequestApp.services.HardwareService;
 import lv.autentica.HardwareRequestApp.services.RequestService;
 import lv.autentica.HardwareRequestApp.services.UserService;
+import lv.autentica.HardwareRequestApp.util.RequestNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/request")
@@ -42,11 +46,20 @@ public class RequestController {
             return ResponseEntity.ok(requestDTO);
         }
         return ResponseEntity.badRequest().body(new ErrorResponse("Invalid username or password"));
-
-
-//        request.setUser(userService.getUserByUsernameAndPassword(requestDTO.getUsername(), requestDTO.getPassword()));
-
-
-
     }
+
+    @PostMapping("/track")
+    public ResponseEntity<?> trackStatus(@RequestBody String trackingNumber) {
+        String status = requestService.trackByTrackingNumber(trackingNumber);
+            Map<String, String> response = new HashMap<>();
+            response.put("status", status);
+            return ResponseEntity.ok(response);
+    }
+
+    @ExceptionHandler
+    private ResponseEntity<ErrorResponse> handleException(RequestNotFoundException e){
+        System.out.println("HANDLER!!!!!!!!!!!!!!!...");
+        return ResponseEntity.badRequest().body(new ErrorResponse("Tracking number not found"));
+    }
+
 }
