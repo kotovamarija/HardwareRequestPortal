@@ -30,7 +30,7 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
-    public User getUserByUsername(String username) {
-        return userRepository.findByUsername(username).orElse(null);
+    public User getUserByUsernameAndPassword(String username, String password) {
+        return userRepository.findByUsernameAndPassword(username, password).orElse(null);
     }
 }

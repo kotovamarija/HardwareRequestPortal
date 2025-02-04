@@ -1,5 +1,6 @@
 package lv.autentica.HardwareRequestApp.controllers;
 
+import lv.autentica.HardwareRequestApp.DTO.ErrorResponse;
 import lv.autentica.HardwareRequestApp.DTO.RequestDTO;
 import lv.autentica.HardwareRequestApp.models.Request;
 import lv.autentica.HardwareRequestApp.models.User;
@@ -26,19 +27,26 @@ public class RequestController {
     }
 
     @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<RequestDTO> createNewRequest(@RequestBody RequestDTO requestDTO) {
+    public ResponseEntity<?> createNewRequest(@RequestBody RequestDTO requestDTO) {
         System.out.println("Получен JSON: " + requestDTO);
 
         Request request = new Request();
+        User user = userService.getUserByUsernameAndPassword(requestDTO.getUsername(), requestDTO.getPassword());
 
-//        request.setTrackingNumber(requestDTO.getTrackingNumber());
-        requestDTO.setTrackingNumber(request.getTrackingNumber());
-        request.setReason(requestDTO.getReason());
-        request.setHardware(hardwareService.findByName(requestDTO.getItemName()));
-        request.setUser(userService.getUserByUsername(requestDTO.getUsername())); // AND PASSWORD - should include password in common method
+        if(user != null){
+            request.setUser(user);
+            request.setReason(requestDTO.getReason());
+            request.setHardware(hardwareService.findByName(requestDTO.getItemName()));
+            requestDTO.setTrackingNumber(request.getTrackingNumber());
+            requestService.save(request);
+            return ResponseEntity.ok(requestDTO);
+        }
+        return ResponseEntity.badRequest().body(new ErrorResponse("Invalid username or password"));
 
-        requestService.save(request);
-        return ResponseEntity.ok(requestDTO);
+
+//        request.setUser(userService.getUserByUsernameAndPassword(requestDTO.getUsername(), requestDTO.getPassword()));
+
+
 
     }
 }

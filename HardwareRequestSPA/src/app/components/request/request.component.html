@@ -11,7 +11,10 @@
     Provide the reason for making this request: <input [(ngModel)]="reason" type="text"><br/><br/>
     Enter username: <input [(ngModel)]="username" type="text"><br/><br/>
     Enter password: <input [(ngModel)]="password" type="text"><br/><br/><br/>
-    <button [routerLink]="['/requestConfirmation']" (click)="addRequest()">Make request!</button>
+    <button (click)="addRequest()">Make request!</button>
+
+    <p *ngIf="errorMessage" style="color: rgba(211, 32, 32, 0.644);">{{ errorMessage }}</p>
+
   </div>
   </div>
   <br/>

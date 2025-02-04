@@ -11,7 +11,7 @@ export class RequestService {
   constructor(private http: HttpClient) {}
 
   addRequest(requestDTO: RequestDTO): Observable<RequestDTO> {
-    return this.http.post<RequestDTO>(`http://localhost:8080/request/new`, requestDTO);}
+    return this.http.post<any>(`http://localhost:8080/request/new`, requestDTO);}
 
 
   private usernameSubject = new BehaviorSubject<string>('');
