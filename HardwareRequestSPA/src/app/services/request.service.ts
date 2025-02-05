@@ -17,6 +17,24 @@ export class RequestService {
     track(trackingNumber: string): Observable<{ status: string }> {
       return this.http.post<{ status: string }>(`http://localhost:8080/request/track`, trackingNumber);}
 
+    getAllRequests(): Observable<RequestDTO[]> {
+      return this.http.get<RequestDTO[]>('http://localhost:8080/request/viewAll');}
+
+    confirmRequest(trackingNumber: string): Observable<{ message: string }> {
+      console.log('im inside the method.....')
+        return this.http.post<{ message: string }>(`http://localhost:8080/request/confirm`, {trackingNumber});}
+
+    rejectRequest(trackingNumber: string): Observable<{ message: string }> {
+      console.log('im inside the method.....')
+        return this.http.post<{ message: string }>(`http://localhost:8080/request/reject`, {trackingNumber});}
+
+    deleteRequest(trackingNumber: string): Observable<{ message: string }> {
+      console.log('im inside the method.....')
+        return this.http.post<{ message: string }>(`http://localhost:8080/request/delete`, {trackingNumber});}
+
+    
+
+  // -----------------    
 
   private usernameSubject = new BehaviorSubject<string>('');
   username$ = this.usernameSubject.asObservable();
@@ -28,7 +46,7 @@ export class RequestService {
   }
 
   
-  // -------
+  // -----------------
   private trackingNumberSubject = new BehaviorSubject<string>('');
   trackingNumber$ = this.trackingNumberSubject.asObservable();
   setTrackingNumber(trackingNumber: string): void {

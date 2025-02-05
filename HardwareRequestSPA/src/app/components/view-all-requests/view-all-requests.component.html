@@ -1,0 +1,29 @@
+<div class="view-all-container">
+    <div *ngFor="let item of requests" class="view-all-card">
+        <a>Request by: {{item.name}} (username: {{item.username}})</a><br/>
+
+        <a>Hardware name: </a>
+        <a style="color:rgb(75, 47, 5); font-weight: bolder;">{{item.itemName}}</a><br/>
+
+        <a>Reason for making the request: </a>
+        <a>{{item.reason}}</a><br/>
+
+        <a>Request status: {{item.status}}</a><br/>
+
+        <a>Request created at: {{item.createdAt}}</a><br/><br/>
+
+       
+        <div *ngIf="item.status == 'SUBMITTED'" >
+        <a>Actions: </a>
+        <button (click)="confirmRequest(item.trackingNumber)">  CONFIRM  </button>
+        <button (click)="rejectRequest(item.trackingNumber)">  REJECT  </button>
+        <button (click)="deleteRequest(item.trackingNumber)">  DELETE  </button>
+
+        <p *ngIf="statusMessages[item.trackingNumber]" style="color: rgb(2, 87, 2); font-weight: bold;">
+            {{ statusMessages[item.trackingNumber] }}
+        </p>
+      
+        </div>
+       
+    </div>
+  </div>

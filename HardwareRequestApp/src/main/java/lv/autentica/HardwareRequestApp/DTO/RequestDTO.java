@@ -15,9 +15,15 @@ public class RequestDTO {
 
     private String username;
 
+    private String name;
+
     private String password;
 
     private String trackingNumber;
+
+    private String status;
+
+    private String createdAt;
 
     public RequestDTO() {
 
@@ -61,6 +67,31 @@ public class RequestDTO {
 
     public void setPassword(String password) {
         this.password = password;
+
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
@@ -70,6 +101,9 @@ public class RequestDTO {
                 ", reason='" + reason + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", trackingNumber='" + trackingNumber + '\'' +
+                ", status='" + status + '\'' +
+                ", createdAt='" + createdAt + '\'' +
                 '}';
     }
 }

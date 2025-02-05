@@ -20,6 +20,8 @@ export class RequestComponent implements OnInit{
   password: string = '';
   trackingNumber: string = 'ooo';
   errorMessage: string = '';
+  status: string = '';
+  createdAt: string = '';
 
 
   constructor( 
@@ -41,8 +43,11 @@ export class RequestComponent implements OnInit{
       this.itemName,
       this.reason,
       this.username,
+      this.itemName,
       this.password,
-      this.trackingNumber
+      this.trackingNumber,
+      this.status,
+      this.createdAt,
     );
 
   console.log('READY TO BE SENT...' + newRequestDTO.trackingNumber);

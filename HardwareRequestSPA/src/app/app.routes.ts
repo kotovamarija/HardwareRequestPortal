@@ -56,8 +56,15 @@ export const routes: Routes = [
 {
     path: 'tracking',
     loadComponent: () => {
-        console.log('here...')
         return import('./components/tracking/tracking.component').then((m) => m.TrackingComponent)
+    },
+},
+
+{
+    path: 'admin',
+    loadComponent: () => {
+        console.log('from admin route.....')
+        return import('./components/view-all-requests/view-all-requests.component').then((m) => m.ViewAllRequestsComponent)
     },
 },
 

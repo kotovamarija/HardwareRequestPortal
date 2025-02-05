@@ -8,4 +8,5 @@ import java.util.Optional;
 
 public interface RequestRepository extends JpaRepository<Request, Long> {
     Optional<Request> findByTrackingNumber(String trackingNumber);
+    void deleteByTrackingNumber(String trackingNumber);
 }
