@@ -1,20 +1,19 @@
-<br/>
+<br />
 <div class="request-container">
-  <br/>
-  <!-- <p style="font-weight: bolder;">{{itemName}}</p> -->
+  <br />
   <div class="request-card">
-    <a>The following item is available for request: </a><br/>
-    <a style="font-weight: bolder;">{{itemName}}</a><br/><br/>
-    <a style="color:rgb(165, 97, 42)">  Please complete the request form to proceed</a><br/><br/>
-    <hr/>
-  <br/>
-    Provide the reason for making this request: <input [(ngModel)]="reason" type="text"><br/><br/>
-    Enter username: <input [(ngModel)]="username" type="text"><br/><br/>
-    Enter password: <input [(ngModel)]="password" type="text"><br/><br/><br/>
+    <a>The following item is available for request: </a><br />
+    <a style="font-weight: bolder;">{{itemName}}</a><br /><br />
+    <a style="color:rgb(165, 97, 42)"> Please complete the request form to proceed</a><br /><br />
+    <hr />
+    <br />
+    Provide the reason for making this request: <input [(ngModel)]="reason" type="text"><br /><br />
+    Enter username: <input [(ngModel)]="username" type="text"><br /><br />
+    Enter password: <input [(ngModel)]="password" type="text"><br /><br /><br />
     <button (click)="addRequest()">Make request!</button>
 
     <p *ngIf="errorMessage" style="color: rgba(211, 32, 32, 0.644);">{{ errorMessage }}</p>
 
   </div>
-  </div>
-  <br/>
+</div>
+<br/>

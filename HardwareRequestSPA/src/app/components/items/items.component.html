@@ -1,19 +1,17 @@
+<div class="items-container">
+<div>
+  <h2> {{ typeName }}</h2>
+</div>
 
 <div>
-    <h2> {{ typeName }}</h2>
+  <input [(ngModel)]="searchQuery" placeholder="Enter search parameter" class="search-input">
+</div>
+<br />
+
+</div>
+
+<div class="items-container">
+  <div *ngFor="let item of filterItems()" class="items-card">
+    <h3 [routerLink]="['/request', item]">{{ item.name }}</h3>
   </div>
-
-  <div>
-    <input [(ngModel)]="searchQuery" placeholder="Enter search parameter">
-    <!-- <button (click)="filterItemsOnClick(searchQuery)">SEARCH</button>  -->
-  </div>
-  
-  <br/>
-
-
-  <div class="items-container">
-    <div *ngFor="let item of filterItems()" class="items-card">
-      <h3 [routerLink]="['/request', item]">{{ item.name }}</h3>
-    </div>
-  </div>
-
+</div>

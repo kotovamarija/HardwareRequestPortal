@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { NavigationService } from '../../services/navigation.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RequestDTO } from '../../models/request.model';
@@ -27,7 +26,6 @@ export class RequestComponent implements OnInit{
   constructor( 
     private route: ActivatedRoute,
     private requestService: RequestService,
-    private navigationService: NavigationService,
     private router: Router,
    ){}
 
@@ -38,7 +36,6 @@ export class RequestComponent implements OnInit{
   }
 
   addRequest(): void {
-
     let newRequestDTO: RequestDTO = new RequestDTO(
       this.itemName,
       this.reason,
@@ -50,8 +47,6 @@ export class RequestComponent implements OnInit{
       this.createdAt,
     );
 
-  console.log('READY TO BE SENT...' + newRequestDTO.trackingNumber);
-
   this.requestService.setUsername(this.username);
 
   this.requestService.addRequest(newRequestDTO)
@@ -62,7 +57,6 @@ export class RequestComponent implements OnInit{
       this.router.navigate(['/requestConfirmation']);
     },
     error: (error) => {
-      console.error("Error message:", error);
       this.errorMessage = error.error?.message;
     }
   });

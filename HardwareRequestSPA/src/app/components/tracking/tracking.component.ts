@@ -16,24 +16,20 @@ export class TrackingComponent {
   errorMessage: string = '';
   status: string = '';
 
-  
-  
-    constructor( 
-      private requestService: RequestService,
-      private router: Router,
-     ){}
-  
+  constructor(
+    private requestService: RequestService,
+    private router: Router,
+  ) { }
 
-  
-    track(): void {
-      console.log('starting track() method....')
-  
+  track(): void {
+    console.log('starting track() method....')
+
     this.requestService.track(this.trackingNumber).subscribe({
-      next: (response) => 
-        {this.status = response.status;
-          this.errorMessage = '';
-          this.trackingNumber = '';
-   
+      next: (response) => {
+        this.status = response.status;
+        this.errorMessage = '';
+        this.trackingNumber = '';
+
       },
       error: (error) => {
         this.errorMessage = error.error?.message;
@@ -42,20 +38,5 @@ export class TrackingComponent {
       }
     })
   }
-
-// -----------------------------
-//   this.requestService.addRequest(newRequestDTO)
-//   .subscribe({
-//     next: (response) => 
-//       {this.requestService.setTrackingNumber(response.trackingNumber);
-//       this.errorMessage = '';
-//       this.router.navigate(['/requestConfirmation']);
-//     },
-//     error: (error) => {
-//       console.error("Error message:", error);
-//       this.errorMessage = error.error?.message;
-//     }
-//   });
-  
 
 }

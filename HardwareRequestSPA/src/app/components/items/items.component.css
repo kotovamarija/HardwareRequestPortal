@@ -14,3 +14,19 @@
     margin-left: 30%;
     margin-right: 30%;  
 }
+
+.search-input {
+  width: 50%; /* Увеличиваем ширину на 50% */
+  height: 120%; /* Увеличиваем высоту на 50% */
+  color: #a8350b; /* Оранжевый цвет текста */
+  font-size: 1em; /* Увеличенный размер шрифта */
+  padding: 10px; /* Внутренние отступы */
+  border: 2px solid #a8350b; /* Оранжевая рамка */
+  border-radius: 5px; /* Скругленные углы */
+  outline: none; /* Убираем синюю рамку при фокусе */
+}
+
+.search-input::placeholder {
+  color: #888; /* Цвет плейсхолдера */
+  font-weight: normal;
+}
