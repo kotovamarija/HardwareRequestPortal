@@ -4,6 +4,8 @@ import { RequestDTO } from '../../models/request.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { User } from '../../models/user.model';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-view-all-requests',
@@ -15,8 +17,12 @@ export class ViewAllRequestsComponent implements OnInit {
 
 requests: RequestDTO[] = [];
 statusMessages: Record<string, string> = {};
+username: string = '';
+password: string = '';
+authenticated: boolean = false;
+errorMessage: string = '';
 
-constructor( private requestService: RequestService,  private router: Router,){
+constructor( private requestService: RequestService,  private router: Router, private userService: UserService){
 
 }
 
@@ -45,6 +51,36 @@ confirmRequest(trackingNumber: string) {
         }, 2000);
     }
   });
+}
+
+login(username: string, password: string): void{
+
+  console.log('hey hey');
+  let authenticatedUser: User = new User(
+    this.username = username,
+    this.password = password
+  );
+
+  this.userService.login(authenticatedUser).subscribe({
+    next: (response) => 
+      {
+      this.loadRequests;
+      this.authenticated = true;
+      console.log(this.authenticated);
+      // this.router.navigate(['/requestConfirmation']);
+    },
+    error: (error) => {
+      this.errorMessage = error.error?.message;
+    }
+  });
+
+
+
+
+
+
+
+
 }
 
 rejectRequest(trackingNumber: string) {

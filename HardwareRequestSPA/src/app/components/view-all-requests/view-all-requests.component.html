@@ -1,4 +1,19 @@
 <div class="view-all-container">
+    
+    <div *ngIf="!authenticated">
+    <div class="view-all-card">
+<p> Please login to access ADMIN page: </p>
+Enter username: <input [(ngModel)]="username" type="text"><br/><br/>
+Enter password: <input [(ngModel)]="password" type="text"><br/><br/>
+
+<p style="color:rgb(170, 49, 18)">{{errorMessage}}</p>
+
+
+<button (click)="login(username, password)">Login!</button>
+    </div><br/>
+</div>
+
+<div *ngIf="authenticated">
     <div *ngFor="let item of requests" class="view-all-card">
         <a>Request by: {{item.name}} (username: {{item.username}})</a><br/>
 
@@ -25,5 +40,10 @@
       
         </div>
        
+
+       
     </div>
+
+</div>
+
   </div>

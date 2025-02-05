@@ -12,10 +12,4 @@ public class HardwareRequestAppApplication {
 		SpringApplication.run(HardwareRequestAppApplication.class, args);
 
 	}
-
-	@Bean
-	public ModelMapper modelMapper(){
-		return new ModelMapper();
-	}
-
 }

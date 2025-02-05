@@ -46,9 +46,6 @@ public class RequestService {
 
     public Request getRequestByTrackingNumber(String trackingNumber) {
         Optional<Request> request = requestRepository.findByTrackingNumber(trackingNumber);
-        System.out.println("Hey im inside the service .... starting point");
-        System.out.println("tracking number:" + trackingNumber);
-        System.out.println("request retrieved: " + request);
         if (request.isPresent()) {
             System.out.println("the status: " + request.get().getStatus().toString());
             return request.get();

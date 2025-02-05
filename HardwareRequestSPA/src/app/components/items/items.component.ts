@@ -4,6 +4,10 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
+interface Item {
+  name: string;
+}
+
 @Component({
   selector: 'app-items',
   imports: [CommonModule, FormsModule, RouterModule],
@@ -12,7 +16,9 @@ import { CommonModule } from '@angular/common';
 })
 export class ItemsComponent implements OnInit{
   typeName: string = '';
-  items: Object[] = [];
+  items: Item[] = [];
+  searchQuery: string = ''; 
+  filteredItems: Item[] = [];
 
   constructor( 
     private route: ActivatedRoute,
@@ -21,17 +27,32 @@ export class ItemsComponent implements OnInit{
 
    ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      console.log('first test');
       this.typeName = params.get('type') ?? '';
       setTimeout(() => this.loadProducts(), 0);
-      console.log('second test');
     });
   }
 
   loadProducts() {
     if (this.typeName) {
       this.navigationService.getItemsByType(this.typeName)
-        .subscribe(data => this.items = data);
+        .subscribe(data => {
+          this.items = data.map(itemName => ({ name: itemName }));
+          this.filteredItems = [...this.items];}
+        );
     }
+  }
+
+  filterItems(): Item[] {
+    return this.items.filter(item => this.getItemName(item).toLowerCase().includes(this.searchQuery.toLowerCase()));
+  }
+
+  // filterItemsOnClick(searchQuery: string) {
+  //   this.searchQuery = searchQuery;
+  //   console.log(this.searchQuery);
+  //   this.filteredItems = this.filterItems();  
+  // }
+
+  getItemName(item: any): string {
+    return item.name || ''; 
   }
 }

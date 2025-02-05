@@ -27,13 +27,12 @@ public class RequestController {
     private RequestService requestService;
     private HardwareService hardwareService;
     private UserService userService;
-    private ModelMapper modelMapper;
 
-    public RequestController(RequestService requestService, HardwareService hardwareService, UserService userService, ModelMapper modelMapper) {
+
+    public RequestController(RequestService requestService, HardwareService hardwareService, UserService userService) {
         this.requestService = requestService;
         this.hardwareService = hardwareService;
         this.userService = userService;
-        this.modelMapper = modelMapper;
     }
 
     @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
