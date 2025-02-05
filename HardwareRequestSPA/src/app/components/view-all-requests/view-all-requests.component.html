@@ -1,49 +1,48 @@
 <div class="view-all-container">
-    
+
     <div *ngIf="!authenticated">
-    <div class="view-all-card">
-<p> Please login to access ADMIN page: </p>
-Enter username: <input [(ngModel)]="username" type="text"><br/><br/>
-Enter password: <input [(ngModel)]="password" type="text"><br/><br/>
+        <div class="view-all-card">
+            <p style="color:rgba(13, 99, 28, 0.932)"> Please login to access ADMIN page: </p>
+            Enter username: <input [(ngModel)]="username" type="text"><br /><br />
+            Enter password: <input [(ngModel)]="password" type="text"><br /><br />
 
-<p style="color:rgb(170, 49, 18)">{{errorMessage}}</p>
+            <p style="color:rgb(170, 49, 18)">{{errorMessage}}</p><br />
+
+            <button (click)="login(username, password)">Login!</button>
+        </div><br />
+    </div>
+
+    <div *ngIf="authenticated">
+        <div *ngFor="let item of requests" class="view-all-card">
+            <a>Request by: {{item.name}} (username: {{item.username}})</a><br />
+
+            <a>Hardware name: </a>
+            <a style="color:rgb(75, 47, 5); font-weight: bolder;">{{item.itemName}}</a><br />
+
+            <a>Reason for making the request: </a>
+            <a>{{item.reason}}</a><br />
+
+            <a>Request status: {{item.status}}</a><br />
+
+            <a>Request created at: {{item.createdAt}}</a><br /><br />
 
 
-<button (click)="login(username, password)">Login!</button>
-    </div><br/>
-</div>
+            <div *ngIf="item.status == 'SUBMITTED'">
+                <a>Actions: </a>
+                <button (click)="confirmRequest(item.trackingNumber)"> CONFIRM </button>
+                <button (click)="rejectRequest(item.trackingNumber)"> REJECT </button>
+                <button (click)="deleteRequest(item.trackingNumber)"> DELETE </button>
 
-<div *ngIf="authenticated">
-    <div *ngFor="let item of requests" class="view-all-card">
-        <a>Request by: {{item.name}} (username: {{item.username}})</a><br/>
+                <p *ngIf="statusMessages[item.trackingNumber]" style="color: rgb(2, 87, 2); font-weight: bold;">
+                    {{ statusMessages[item.trackingNumber] }}
+                </p>
 
-        <a>Hardware name: </a>
-        <a style="color:rgb(75, 47, 5); font-weight: bolder;">{{item.itemName}}</a><br/>
+            </div>
 
-        <a>Reason for making the request: </a>
-        <a>{{item.reason}}</a><br/>
 
-        <a>Request status: {{item.status}}</a><br/>
 
-        <a>Request created at: {{item.createdAt}}</a><br/><br/>
-
-       
-        <div *ngIf="item.status == 'SUBMITTED'" >
-        <a>Actions: </a>
-        <button (click)="confirmRequest(item.trackingNumber)">  CONFIRM  </button>
-        <button (click)="rejectRequest(item.trackingNumber)">  REJECT  </button>
-        <button (click)="deleteRequest(item.trackingNumber)">  DELETE  </button>
-
-        <p *ngIf="statusMessages[item.trackingNumber]" style="color: rgb(2, 87, 2); font-weight: bold;">
-            {{ statusMessages[item.trackingNumber] }}
-        </p>
-      
         </div>
-       
 
-       
     </div>
 
 </div>
-
-  </div>

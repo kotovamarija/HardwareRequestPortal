@@ -20,14 +20,13 @@ public class User {
     @Column(name ="name")
     private String name;
 
-    @Column(name ="username") // UNIQUE -- VALIDATION!!!
+    @Column(name ="username") // UNIQUE -- should add validation
     private String username;
 
     @Column(name ="password")
     private String password;
 
     @OneToMany(mappedBy = "user")
-    //@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Request> requests;
 
     public User(){

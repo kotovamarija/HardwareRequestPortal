@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { NavigationService } from '../../services/navigation.service';
 import { CommonModule } from '@angular/common';
@@ -12,13 +12,10 @@ import { RouterModule } from '@angular/router';
   styleUrl: './categories.component.css'
 })
 export class CategoriesComponent implements OnInit {
-  title = signal('CHOOSE CATEGORY');
-
 
 categories: String[] = [];
-selectedUsername: string = '';
 
-constructor( private userService: UserService, private navigationService: NavigationService){
+constructor(private navigationService: NavigationService){
 
 }
 ngOnInit() {

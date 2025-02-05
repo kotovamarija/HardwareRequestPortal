@@ -15,7 +15,7 @@ import java.util.Optional;
 @Service
 @Transactional(readOnly = true)
 public class UserService {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -29,13 +29,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getUserById(Long id) {
-        return userRepository.findById(id).orElse(null);
-    }
-
     public User getUserByUsernameAndPassword(String username, String password) {
-        //return userRepository.findByUsernameAndPassword(username, password).orElse(null);
-
         Optional<User> user = userRepository.findByUsernameAndPassword(username, password);
         if (user.isPresent()) {
             return user.get();
@@ -47,6 +41,5 @@ public class UserService {
         if (!user.getUserRole().equals(UserRole.ADMIN)) {
             throw new InvalidRoleException();
     }
-
     }
 }

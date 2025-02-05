@@ -1,12 +1,10 @@
-
 <div>
-    <h2>{{ categoryName }}</h2>
-  </div>
+  <h2>{{ categoryName }}</h2>
+</div>
+<br/>
 
-  <br/>
-  
 <div class="types-container">
   <div *ngFor="let type of types" class="types-card">
-    <h3 [routerLink]="['/type', type]" >{{ type }}</h3>
+    <h3 [routerLink]="['/type', type]">{{ type }}</h3>
   </div>
-</div> 
+</div>

@@ -15,20 +15,20 @@ export class RequestConfirmationComponent implements OnInit {
   trackingNumber: string = '';
   username: string = '';
 
-  constructor(private requestService: RequestService){}
+  constructor(private requestService: RequestService) { }
 
   ngOnInit() {
-  this.requestService.username$.subscribe(username => {
-    if (username) {
-    this.username = username;
-    }
-  });
+    this.requestService.username$.subscribe(username => {
+      if (username) {
+        this.username = username;
+      }
+    });
 
-  this.requestService.trackingNumber$.subscribe(trackingNumber => {
-    if (trackingNumber) {
-    this.trackingNumber = trackingNumber;
-    }
-  });
+    this.requestService.trackingNumber$.subscribe(trackingNumber => {
+      if (trackingNumber) {
+        this.trackingNumber = trackingNumber;
+      }
+    });
 
   }
 }

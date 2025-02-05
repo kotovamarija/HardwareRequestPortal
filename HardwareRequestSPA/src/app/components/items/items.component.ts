@@ -14,18 +14,18 @@ interface Item {
   templateUrl: './items.component.html',
   styleUrl: './items.component.css'
 })
-export class ItemsComponent implements OnInit{
+export class ItemsComponent implements OnInit {
   typeName: string = '';
   items: Item[] = [];
-  searchQuery: string = ''; 
+  searchQuery: string = '';
   filteredItems: Item[] = [];
 
-  constructor( 
+  constructor(
     private route: ActivatedRoute,
     private navigationService: NavigationService,
-   ){}
+  ) { }
 
-   ngOnInit() {
+  ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.typeName = params.get('type') ?? '';
       setTimeout(() => this.loadProducts(), 0);
@@ -37,7 +37,8 @@ export class ItemsComponent implements OnInit{
       this.navigationService.getItemsByType(this.typeName)
         .subscribe(data => {
           this.items = data.map(itemName => ({ name: itemName }));
-          this.filteredItems = [...this.items];}
+          this.filteredItems = [...this.items];
+        }
         );
     }
   }
@@ -46,13 +47,7 @@ export class ItemsComponent implements OnInit{
     return this.items.filter(item => this.getItemName(item).toLowerCase().includes(this.searchQuery.toLowerCase()));
   }
 
-  // filterItemsOnClick(searchQuery: string) {
-  //   this.searchQuery = searchQuery;
-  //   console.log(this.searchQuery);
-  //   this.filteredItems = this.filterItems();  
-  // }
-
   getItemName(item: any): string {
-    return item.name || ''; 
+    return item.name || '';
   }
 }

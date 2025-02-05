@@ -7,34 +7,32 @@ import { RequestDTO } from '../models/request.model';
   providedIn: 'root'
 })
 export class RequestService {
-  
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient) { }
 
   addRequest(requestDTO: RequestDTO): Observable<RequestDTO> {
-    return this.http.post<any>(`http://localhost:8080/request/new`, requestDTO);}
+    return this.http.post<any>(`http://localhost:8080/request/new`, requestDTO);
+  }
 
+  track(trackingNumber: string): Observable<{ status: string }> {
+    return this.http.post<{ status: string }>(`http://localhost:8080/request/track`, trackingNumber);
+  }
 
-    track(trackingNumber: string): Observable<{ status: string }> {
-      return this.http.post<{ status: string }>(`http://localhost:8080/request/track`, trackingNumber);}
+  getAllRequests(): Observable<RequestDTO[]> {
+    return this.http.get<RequestDTO[]>('http://localhost:8080/request/viewAll');
+  }
 
-    getAllRequests(): Observable<RequestDTO[]> {
-      return this.http.get<RequestDTO[]>('http://localhost:8080/request/viewAll');}
+  confirmRequest(trackingNumber: string): Observable<{ message: string }> {
+    return this.http.post<{ message: string }>(`http://localhost:8080/request/confirm`, { trackingNumber });
+  }
 
-    confirmRequest(trackingNumber: string): Observable<{ message: string }> {
-      console.log('im inside the method.....')
-        return this.http.post<{ message: string }>(`http://localhost:8080/request/confirm`, {trackingNumber});}
+  rejectRequest(trackingNumber: string): Observable<{ message: string }> {
+    return this.http.post<{ message: string }>(`http://localhost:8080/request/reject`, { trackingNumber });
+  }
 
-    rejectRequest(trackingNumber: string): Observable<{ message: string }> {
-      console.log('im inside the method.....')
-        return this.http.post<{ message: string }>(`http://localhost:8080/request/reject`, {trackingNumber});}
-
-    deleteRequest(trackingNumber: string): Observable<{ message: string }> {
-      console.log('im inside the method.....')
-        return this.http.post<{ message: string }>(`http://localhost:8080/request/delete`, {trackingNumber});}
-
-    
-
-  // -----------------    
+  deleteRequest(trackingNumber: string): Observable<{ message: string }> {
+    return this.http.post<{ message: string }>(`http://localhost:8080/request/delete`, { trackingNumber });
+  }
 
   private usernameSubject = new BehaviorSubject<string>('');
   username$ = this.usernameSubject.asObservable();
@@ -45,8 +43,6 @@ export class RequestService {
     return this.usernameSubject.value;
   }
 
-  
-  // -----------------
   private trackingNumberSubject = new BehaviorSubject<string>('');
   trackingNumber$ = this.trackingNumberSubject.asObservable();
   setTrackingNumber(trackingNumber: string): void {
@@ -56,15 +52,4 @@ export class RequestService {
     return this.trackingNumberSubject.value;
   }
 
-
-   //  addRequest(request: RequestDTO): Observable<RequestDTO> {
-      // console.log("I AM HERE")
-    // console.log("Отправка запроса: ", JSON.stringify(request));
-  
-    // Преобразуем объект перед отправкой
-    // const plainRequest = { ...request };
-  
-    // return this.http.post<RequestDTO>(`http://localhost:8080/request/new`, plainRequest, {
-    //   headers: { 'Content-Type': 'application/json' }
-    // });
 }

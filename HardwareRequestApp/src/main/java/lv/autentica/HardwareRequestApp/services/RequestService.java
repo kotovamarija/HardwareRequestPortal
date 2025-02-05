@@ -47,7 +47,6 @@ public class RequestService {
     public Request getRequestByTrackingNumber(String trackingNumber) {
         Optional<Request> request = requestRepository.findByTrackingNumber(trackingNumber);
         if (request.isPresent()) {
-            System.out.println("the status: " + request.get().getStatus().toString());
             return request.get();
         }
         throw new RequestNotFoundException();

@@ -1,9 +1,9 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RequestService } from '../../services/request.service';
 import { RequestDTO } from '../../models/request.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { User } from '../../models/user.model';
 import { UserService } from '../../services/user.service';
 
@@ -15,100 +15,80 @@ import { UserService } from '../../services/user.service';
 })
 export class ViewAllRequestsComponent implements OnInit {
 
-requests: RequestDTO[] = [];
-statusMessages: Record<string, string> = {};
-username: string = '';
-password: string = '';
-authenticated: boolean = false;
-errorMessage: string = '';
+  requests: RequestDTO[] = [];
+  statusMessages: Record<string, string> = {};
+  username: string = '';
+  password: string = '';
+  authenticated: boolean = false;
+  errorMessage: string = '';
 
-constructor( private requestService: RequestService,  private router: Router, private userService: UserService){
+  constructor(private requestService: RequestService, private userService: UserService) {
+  }
 
-}
+  ngOnInit() {
+    this.loadRequests();
+  }
 
-ngOnInit() {
-  this.loadRequests();
-}
+  loadRequests() {
+    this.requestService.getAllRequests().subscribe(
+      data => {
+        this.requests = data;
+      },
+    );
+  }
 
-loadRequests() {
-  this.requestService.getAllRequests().subscribe(
-    data => {
-      this.requests = data;
-    },
-  );
-}
-
-
-confirmRequest(trackingNumber: string) {
-  console.log('starting main method...')
-  this.requestService.confirmRequest(trackingNumber)
-  .subscribe({
-    next: (response) => 
-      { 
-        this.statusMessages[trackingNumber] = response.message;
-        setTimeout(() => {
-          this.loadRequests();
-        }, 2000);
-    }
-  });
-}
-
-login(username: string, password: string): void{
-
-  console.log('hey hey');
-  let authenticatedUser: User = new User(
-    this.username = username,
-    this.password = password
-  );
-
-  this.userService.login(authenticatedUser).subscribe({
-    next: (response) => 
-      {
-      this.loadRequests;
-      this.authenticated = true;
-      console.log(this.authenticated);
-      // this.router.navigate(['/requestConfirmation']);
-    },
-    error: (error) => {
-      this.errorMessage = error.error?.message;
-    }
-  });
-
-
-
-
-
-
-
-
-}
-
-rejectRequest(trackingNumber: string) {
-    this.requestService.rejectRequest(trackingNumber)
-    .subscribe({
-      next: (response) => 
-        {
+  confirmRequest(trackingNumber: string) {
+    this.requestService.confirmRequest(trackingNumber)
+      .subscribe({
+        next: (response) => {
           this.statusMessages[trackingNumber] = response.message;
           setTimeout(() => {
             this.loadRequests();
           }, 2000);
-          
+        }
+      });
+  }
+
+  login(username: string, password: string): void {
+    let authenticatedUser: User = new User(
+      this.username = username,
+      this.password = password
+    );
+
+    this.userService.login(authenticatedUser).subscribe({
+      next: () => {
+        this.loadRequests;
+        this.authenticated = true;
+      },
+      error: (error) => {
+        this.errorMessage = error.error?.message;
       }
     });
   }
 
-deleteRequest(trackingNumber: string) {
-      this.requestService.deleteRequest(trackingNumber)
+  rejectRequest(trackingNumber: string) {
+    this.requestService.rejectRequest(trackingNumber)
       .subscribe({
-        next: (response) => 
-          {
-            this.statusMessages[trackingNumber] = response.message;
-            setTimeout(() => {
-              this.loadRequests();
-            }, 2000);
+        next: (response) => {
+          this.statusMessages[trackingNumber] = response.message;
+          setTimeout(() => {
+            this.loadRequests();
+          }, 2000);
         }
       });
-}
+  }
+
+  deleteRequest(trackingNumber: string) {
+    this.requestService.deleteRequest(trackingNumber)
+      .subscribe({
+        next: (response) => {
+          this.statusMessages[trackingNumber] = response.message;
+          setTimeout(() => {
+            this.loadRequests();
+          }, 2000);
+        }
+      });
+  }
 
 }
 

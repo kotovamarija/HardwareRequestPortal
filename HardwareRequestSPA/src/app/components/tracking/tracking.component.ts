@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RequestService } from '../../services/request.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-tracking',
@@ -17,13 +17,10 @@ export class TrackingComponent {
   status: string = '';
 
   constructor(
-    private requestService: RequestService,
-    private router: Router,
+    private requestService: RequestService
   ) { }
 
   track(): void {
-    console.log('starting track() method....')
-
     this.requestService.track(this.trackingNumber).subscribe({
       next: (response) => {
         this.status = response.status;

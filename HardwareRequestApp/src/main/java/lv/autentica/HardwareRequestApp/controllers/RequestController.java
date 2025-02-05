@@ -9,8 +9,8 @@ import lv.autentica.HardwareRequestApp.models.enums.Status;
 import lv.autentica.HardwareRequestApp.services.HardwareService;
 import lv.autentica.HardwareRequestApp.services.RequestService;
 import lv.autentica.HardwareRequestApp.services.UserService;
+import lv.autentica.HardwareRequestApp.util.InvalidUsernameOrPasswordException;
 import lv.autentica.HardwareRequestApp.util.RequestNotFoundException;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,8 +37,6 @@ public class RequestController {
 
     @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createNewRequest(@RequestBody RequestDTO requestDTO) {
-        System.out.println("Получен JSON: " + requestDTO);
-
         Request request = new Request();
         User user = userService.getUserByUsernameAndPassword(requestDTO.getUsername(), requestDTO.getPassword());
 
@@ -66,12 +64,10 @@ public class RequestController {
        return requestService.getAllRequests().stream().map(request -> convertToRequestDTO(request)).collect(Collectors.toList());
     }
 
-
     @PostMapping("/confirm")
     public ResponseEntity<?> confirm(@RequestBody TrackingNumberDTO trackingNumberDTO) {
         Request requestToBeChanged = requestService.getRequestByTrackingNumber(trackingNumberDTO.getTrackingNumber());
         requestService.changeStatus(requestToBeChanged, Status.APPROVED);
-
         Map<String, String> response = new HashMap<>();
         response.put("message", "Status changed to APPROVED");
         return ResponseEntity.ok(response);
@@ -81,7 +77,6 @@ public class RequestController {
     public ResponseEntity<?> reject(@RequestBody TrackingNumberDTO trackingNumberDTO) {
         Request requestToBeChanged = requestService.getRequestByTrackingNumber(trackingNumberDTO.getTrackingNumber());
         requestService.changeStatus(requestToBeChanged, Status.DENIED);
-
         Map<String, String> response = new HashMap<>();
         response.put("message", "Status changed to DENIED");
         return ResponseEntity.ok(response);
@@ -90,32 +85,32 @@ public class RequestController {
     @PostMapping("/delete")
     public ResponseEntity<?> delete(@RequestBody TrackingNumberDTO trackingNumberDTO) {
         requestService.deleteByTrackingNumber(trackingNumberDTO.getTrackingNumber());
-
         Map<String, String> response = new HashMap<>();
         response.put("message", "Request has been deleted");
         return ResponseEntity.ok(response);
     }
 
+    private RequestDTO convertToRequestDTO(Request request) {
+        RequestDTO requestDTO = new RequestDTO();
+        requestDTO.setName(request.getUser().getName());
+        requestDTO.setUsername(request.getUser().getUsername());
+        requestDTO.setItemName(request.getHardware().getName());
+        requestDTO.setStatus(request.getStatus().toString());
+        requestDTO.setCreatedAt(request.getCreatedAt().toString());
+        requestDTO.setReason(request.getReason());
+        requestDTO.setTrackingNumber(request.getTrackingNumber());
+
+        return requestDTO;
+    }
 
     @ExceptionHandler
     private ResponseEntity<ErrorResponse> handleException(RequestNotFoundException e){
         return ResponseEntity.badRequest().body(new ErrorResponse("Tracking number not found"));
     }
 
-    private RequestDTO convertToRequestDTO(Request request) {
-        RequestDTO requestDTO = new RequestDTO();
-
-        requestDTO.setName(request.getUser().getName());
-        requestDTO.setUsername(request.getUser().getUsername());
-        requestDTO.setItemName(request.getHardware().getName());
-        requestDTO.setStatus(request.getStatus().toString());
-        requestDTO.setCreatedAt(request.getCreatedAt().toString());
-
-        requestDTO.setReason(request.getReason());
-        requestDTO.setTrackingNumber(request.getTrackingNumber());
-
-
-        return requestDTO;
+    @ExceptionHandler
+    private ResponseEntity<ErrorResponse> handleInvalidUsernameOrPasswordException(InvalidUsernameOrPasswordException e){
+        return ResponseEntity.badRequest().body(new ErrorResponse("Invalid username or password"));
     }
 
 }

@@ -1,5 +1,3 @@
-import { User } from "./user.model";
-
 export class RequestDTO{
     itemName: string;
     reason: string;
@@ -20,8 +18,5 @@ export class RequestDTO{
         this.status = status;
         this.createdAt = createdAt;
     }
-
-    
-
     
 }

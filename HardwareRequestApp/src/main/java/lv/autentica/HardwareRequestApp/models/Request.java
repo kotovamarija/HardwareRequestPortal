@@ -17,8 +17,7 @@ public class Request {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @ManyToOne // to solve the error (More than one row with the given identifier was found)
-//    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "hardware_id", referencedColumnName = "id")
     private Hardware hardware;
 
@@ -78,14 +77,6 @@ public class Request {
         this.status = status;
     }
 
-//    public LocalDateTime getCreatedAt() {
-//        return createdAt;
-//    }
-//
-//    public void setCreatedAt(LocalDateTime createdAt) {
-//        this.createdAt = createdAt;
-//    }
-
     public User getUser() {
         return user;
     }
@@ -110,15 +101,4 @@ public class Request {
         this.createdAt = createdAt;
     }
 
-    @Override
-    public String toString() {
-        return "Request{" +
-                "id=" + id +
-                ", user=" + user +
-                ", hardware=" + hardware +
-                ", reason='" + reason + '\'' +
-                ", status=" + status +
-                ", createdAt=" + createdAt +
-                '}';
-    }
 }

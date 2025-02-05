@@ -19,11 +19,9 @@ public class Hardware {
 
     @Enumerated(EnumType.STRING)
     private Type type;
-    private String name; //  long name including characteristics
+    private String name;
 
     @OneToMany(mappedBy = "hardware")
-//    @OneToOne(mappedBy = "hardware")
-//    private Request request;
     private List<Request> request;
 
     public Hardware() {}
@@ -55,14 +53,6 @@ public class Hardware {
     public void setRequest(List<Request> request) {
         this.request = request;
     }
-
-    //    public Request getRequest() {
-//        return request;
-//    }
-//
-//    public void setRequest(Request request) {
-//        this.request = request;
-//    }
 
     public String getName() {
         return name;

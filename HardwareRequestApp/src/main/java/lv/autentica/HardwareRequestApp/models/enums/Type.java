@@ -2,12 +2,12 @@ package lv.autentica.HardwareRequestApp.models.enums;
 
 public enum Type {
 
-    //of type computers
+    //belongs to category computers
     LAPTOPS,
     TABLETS,
     PERSONAL_COMPUTERS,
 
-    //of group computer components
+    //belongs to category computer components
     CPU,
     HDD,
     SSD,
@@ -19,34 +19,34 @@ public enum Type {
     COOLING_FAN,
     CARD_READER,
 
-    // MONITORS
+    //belongs to category monitors
     SCREEN_SIZE_19,
     SCREEN_SIZE_21,
     SCREEN_SIZE_25,
 
-    //of group accessories
+    //belongs to category accessories
     MOUSE,
     KEYBOARD,
     MOUSE_PAD,
     STYLUS,
 
-    //of groups audio & video
+    //belongs to category audio & video
     HEADPHONES,
     SPEAKERS,
     MICROPHONES,
     WEB_CAMERA,
     SECURITY_CAMERA,
 
-    //projectors and screens
+    //belongs to category projectors and screens
     PROJECTORS,
     PROJECTOR_SCREENS,
 
-    //of group printers and scanners
+    //belongs to category printers and scanners
     PRINTER,
     SCANNER,
     CARTRIDGES,
 
-    //CHARGERS AND CABLES
+    //belongs to category cables and adapters
     HDMI_CABLE,
     VGA_CABLE,
     DVI_CABLE,
@@ -54,13 +54,13 @@ public enum Type {
     MONITOR_ADAPTERS,
     USB_CABLE,
 
-    //of group networking devices
+    //belongs to category networking devices
     ROUTER,
     NETWORK_ADAPTER,
     SWITCH,
 
 
-    //OTHERS:
+    //belongs to category OTHERS:
     MEMORY_CARDS, // others
     USB_FLASH_MEMORY, // others
     BATTERIES_AA,

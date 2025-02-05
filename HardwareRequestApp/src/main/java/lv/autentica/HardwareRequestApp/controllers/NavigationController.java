@@ -38,9 +38,4 @@ public class NavigationController {
         return hardwareService.findByType(Type.valueOf(chosenType.replaceAll(" ", "_"))).stream().map(hardware -> hardware.getName()).collect(Collectors.toList());
     }
 
-//    @PostMapping
-//    public ResponseEntity<String> createUser(@RequestBody String type){
-//        return ResponseEntity.ok(type);
-//    }
-
 }
