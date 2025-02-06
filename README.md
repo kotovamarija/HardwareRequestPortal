@@ -126,3 +126,9 @@ You can now interact with the application by browsing available equipment, makin
 - **Testing**: All testing for this application was done by manually going through the features and simulating various scenarios to make sure everything works as expected.
 - **Authentication**: Only authenticated users can make requests, and only admins can manage request statuses.
 
+
+## Contact
+
+Feel free to reach out to me at:  
+**Email**: [marija.kotova91@gmail.com](mailto:marija.bondarenko@inbox.lv)  
+**LinkedIn**: [www.linkedin.com/in/marija-kotova](https://www.linkedin.com/in/marija-kotova)
