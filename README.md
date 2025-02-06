@@ -66,7 +66,7 @@ cd HardwareRequestPortal
 Inside the frontend folder (HardwareRequestSPA), run:
 
 ```
-npm install
+npm install -g @angular/cli
 ```
 
 #### Run the Angular application:
