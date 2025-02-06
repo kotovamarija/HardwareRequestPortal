@@ -55,7 +55,7 @@ Before running the application on another machine, make sure you have the follow
 ### 1. Clone the repository  
 
 ```
-git clone <repository-url>
+git clone https://github.com/kotovamarija/HardwareRequestPortal.git
 cd HardwareRequestPortal
 ```
 
