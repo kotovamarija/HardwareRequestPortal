@@ -4,6 +4,9 @@
 
 The **HardwareRequestPortal** is a web application that allows users to browse available equipment, request hardware, and track the status of their requests. The portal also provides an admin interface to manage requests, approve, reject, or delete them.  
 
+![Image](https://private-user-images.githubusercontent.com/194954597/410307567-a266fe27-2651-4826-8031-9bb94c6ab801.PNG?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3Mzg4MjE3MzAsIm5iZiI6MTczODgyMTQzMCwicGF0aCI6Ii8xOTQ5NTQ1OTcvNDEwMzA3NTY3LWEyNjZmZTI3LTI2NTEtNDgyNi04MDMxLTliYjk0YzZhYjgwMS5QTkc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMjA2JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDIwNlQwNTU3MTBaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0yMWRlNGI0ZTFhMDM1MTg3OTY5OTI1ZGNiMTNiOTg5M2FkYjc4YTM0MjA5ZWE5NzZhYTBjM2NlZjIzMTA0ZGM5JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.ttgAAlEKygn5518VWww7XFMzx9Y4SL7zpxNdK-mVY5Q)
+
+
 ## Architecture  
 
 The application consists of two parts:  
@@ -11,7 +14,6 @@ The application consists of two parts:
 ### Backend (Spring Boot Application)  
 - Java 17  
 - Spring Boot 3.4.2  
-- Spring Data JPA  
 - SQLite database (embedded)  
 - Maven for dependency management  
 
@@ -106,8 +108,6 @@ Frontend (Angular): http://localhost:4200
 Backend (Spring Boot): http://localhost:8080
 
 You can now interact with the application by browsing available equipment, making requests, and managing them based on your role (user or admin).
-
-![Image](https://private-user-images.githubusercontent.com/194954597/410307567-a266fe27-2651-4826-8031-9bb94c6ab801.PNG?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3Mzg4MjE3MzAsIm5iZiI6MTczODgyMTQzMCwicGF0aCI6Ii8xOTQ5NTQ1OTcvNDEwMzA3NTY3LWEyNjZmZTI3LTI2NTEtNDgyNi04MDMxLTliYjk0YzZhYjgwMS5QTkc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMjA2JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDIwNlQwNTU3MTBaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0yMWRlNGI0ZTFhMDM1MTg3OTY5OTI1ZGNiMTNiOTg5M2FkYjc4YTM0MjA5ZWE5NzZhYTBjM2NlZjIzMTA0ZGM5JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.ttgAAlEKygn5518VWww7XFMzx9Y4SL7zpxNdK-mVY5Q)
 
 ### Credentials for Testing
 
