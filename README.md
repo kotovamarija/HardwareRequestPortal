@@ -76,6 +76,13 @@ Now you can start the Angular application by running:
 ```
 ng serve
 ```
+*If you encounter an error saying* `"Error: Could not find the '@angular-devkit/build-angular:dev-server' builder's node package."` *after this step, try running the following commands:*
+
+```sh
+npm uninstall @angular-devkit/build-angular
+npm install --save-dev @angular-devkit/build-angular
+ng serve
+```
 
 By default, the app will be available at http://localhost:4200.
 
@@ -130,5 +137,4 @@ You can now interact with the application by browsing available equipment, makin
 ## Contact
 
 Feel free to reach out to me at:  
-**Email**: [marija.kotova91@gmail.com](mailto:marija.bondarenko@inbox.lv)  
 **LinkedIn**: [www.linkedin.com/in/marija-kotova](https://www.linkedin.com/in/marija-kotova)
