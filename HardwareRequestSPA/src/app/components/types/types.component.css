@@ -8,9 +8,16 @@
 
 .types-container {
     display: -moz-inline-box;
-    grid-template-columns: repeat(5, 1fr); 
     gap: 80px;
     padding: 20px;
+    text-align: center;
     margin-left: 30%;
     margin-right: 30%;  
+}
+
+@media screen and (max-width: 768px) {
+  .types-container {
+      margin-left: 5%;
+      margin-right: 5%;
+  }
 }

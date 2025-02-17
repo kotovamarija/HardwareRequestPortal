@@ -1,15 +1,10 @@
 <div class="items-container">
   <div>
-    <h2> {{ typeName }}</h2>
-  </div>
-
-  <div>
     <input [(ngModel)]="searchQuery" placeholder="Enter search parameter" class="search-input">
   </div>
   <br />
-</div>
 
-<div class="items-container">
+  <h2 style="color: rgba(165, 42, 42, 0.4);"> {{ typeName }}</h2>
   <div *ngFor="let item of filterItems()" class="items-card">
     <h3 [routerLink]="['/request', item.name]">{{ item.name }}</h3>
   </div>

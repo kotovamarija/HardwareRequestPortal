@@ -20,7 +20,7 @@ public class User {
     @Column(name ="name")
     private String name;
 
-    @Column(name ="username") // UNIQUE -- should add validation
+    @Column(name ="username")
     private String username;
 
     @Column(name ="password")

@@ -5,7 +5,11 @@
   "projects": {
     "HardwareRequestSPA": {
       "projectType": "application",
-      "schematics": {"@schematics/angular:component": {"skipTests": true}},
+      "schematics": {
+        "@schematics/angular:component": {
+          "skipTests": true
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -15,7 +19,6 @@
           "options": {
             "outputPath": "dist/hardware-request-spa",
             "index": "src/index.html",
-            "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -30,11 +33,7 @@
               "src/styles.css"
             ],
             "scripts": [],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -59,6 +58,14 @@
             }
           },
           "defaultConfiguration": "production"
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/hardware-request-spa-server",
+            "main": "src/main.server.ts",  
+            "tsConfig": "tsconfig.server.json"
+          }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -93,6 +100,14 @@
               "src/styles.css"
             ],
             "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "@netlify-builder/deploy:deploy",
+          "options": {
+            "outputPath": "dist/hardware-request-spa",
+            "netlifyToken": "nfp_KEsUHSskB4C4QuNfp4DiftrbbWnPAkj18b73",
+            "siteId": "94845a47-184c-473e-9561-0835c759fea5"
           }
         }
       }

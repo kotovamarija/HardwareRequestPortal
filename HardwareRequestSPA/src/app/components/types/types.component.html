@@ -1,9 +1,7 @@
-<div>
-  <h2>{{ categoryName }}</h2>
-</div>
-<br/>
+
 
 <div class="types-container">
+  <h2 style="color: rgba(165, 42, 42, 0.4);">{{ categoryName }}</h2>
   <div *ngFor="let type of types" class="types-card">
     <h3 [routerLink]="['/type', type]">{{ type }}</h3>
   </div>

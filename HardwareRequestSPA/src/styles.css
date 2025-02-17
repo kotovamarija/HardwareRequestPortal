@@ -1,15 +1,8 @@
-/* :root {
-    --dark-color: #FAF3E0;
-
-} */
-
 body {
     padding-inline: 16px;
     padding-block: 8px;
-    /* background: var(--dark-color); */
     background: #FAF3E0;
     color: black;
-
 }
 
 a{
@@ -17,27 +10,62 @@ a{
     font-size: 1rem;
 }
 
-header{
-    position: relative;
-    padding: 0 2rem;
+@media screen and (max-width: 768px) {
+    .category-container, 
+    .items-container,
+    .request-container,
+    .request-confirmation-container,
+    .tracking-container,
+    .types-container,
+    .view-all-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
 
-    padding-inline: 16px;
-    padding-block: 8px;
-    background-color: #E6D5B8;
+    .category-card .category-image {
+        width: 120px;
+        height: 120px;
+    }
 
+    .items-card,
+    .request-card,
+    .request-confirmation-card,
+    .tracking-card,
+    .types-card,
+    .view-all-card {
+        padding: 10px;
+        font-size: 12px; ;
+    }
+    
+    .search-input {
+        width: 90%; 
+        font-size: 0.9em;
+    }
+
+    input {
+        width: 100%; 
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    .navbar ul {
+        display: flex;
+        flex-direction: column; 
+        color: rgb(85, 8, 8);
+    }
+
+    .search-input {
+        font-size: 0.8em;
+    }
+    
 }
 
-.navbar{
-    width: 100%;
-    height: 60px;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
 
-.navbar .links {
-    display: flex;
-    gap: 2rem;
-}
+
+
+
+

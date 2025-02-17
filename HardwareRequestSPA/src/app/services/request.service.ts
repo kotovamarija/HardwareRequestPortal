@@ -8,30 +8,33 @@ import { RequestDTO } from '../models/request.model';
 })
 export class RequestService {
 
+  //private apiUrl = 'https://hardware-request-application-810218089742.europe-north1.run.app';  // backend url (for deployment)
+  private apiUrl = 'http://localhost:8080'; // for running application locally
+
   constructor(private http: HttpClient) { }
 
   addRequest(requestDTO: RequestDTO): Observable<RequestDTO> {
-    return this.http.post<any>(`http://localhost:8080/request/new`, requestDTO);
+    return this.http.post<any>(`${this.apiUrl}/request/new`, requestDTO);
   }
 
   track(trackingNumber: string): Observable<{ status: string }> {
-    return this.http.post<{ status: string }>(`http://localhost:8080/request/track`, trackingNumber);
+    return this.http.post<{ status: string }>(`${this.apiUrl}/request/track`, trackingNumber);
   }
 
   getAllRequests(): Observable<RequestDTO[]> {
-    return this.http.get<RequestDTO[]>('http://localhost:8080/request/viewAll');
+    return this.http.get<RequestDTO[]>(`${this.apiUrl}/request/viewAll`);
   }
 
   confirmRequest(trackingNumber: string): Observable<{ message: string }> {
-    return this.http.post<{ message: string }>(`http://localhost:8080/request/confirm`, { trackingNumber });
+    return this.http.post<{ message: string }>(`${this.apiUrl}/request/confirm`, { trackingNumber });
   }
 
   rejectRequest(trackingNumber: string): Observable<{ message: string }> {
-    return this.http.post<{ message: string }>(`http://localhost:8080/request/reject`, { trackingNumber });
+    return this.http.post<{ message: string }>(`${this.apiUrl}/request/reject`, { trackingNumber });
   }
 
   deleteRequest(trackingNumber: string): Observable<{ message: string }> {
-    return this.http.post<{ message: string }>(`http://localhost:8080/request/delete`, { trackingNumber });
+    return this.http.post<{ message: string }>(`${this.apiUrl}/request/delete`, { trackingNumber });
   }
 
   private usernameSubject = new BehaviorSubject<string>('');

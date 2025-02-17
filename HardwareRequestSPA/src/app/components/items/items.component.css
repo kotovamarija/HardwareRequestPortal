@@ -9,11 +9,20 @@
 .items-container {
     display: -moz-inline-box;
     grid-template-columns: repeat(5, 1fr); 
+    text-align: center;
     gap: 80px;
     padding: 20px;
     margin-left: 30%;
     margin-right: 30%;  
 }
+
+@media screen and (max-width: 768px) {
+  .items-container {
+      margin-left: 5%;
+      margin-right: 5%;
+  }
+}
+
 
 .search-input {
   width: 50%;
