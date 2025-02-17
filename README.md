@@ -21,6 +21,21 @@ The application consists of two parts:
 - Angular 19  
 - Single Page Application (SPA)  
 
+## Deployment
+
+The application is deployed via Google Cloud (for backend) and Google Firebase (for frontend) and is currently running at:  
+[https://hardware-request-application.web.app]( https://hardware-request-application.web.app)
+
+### Credentials for Exploring the functionality
+
+- **User role**:
+  - Username: `user`
+  - Password: `user2025`
+
+- **Admin role (for accessing ADMIN page)**:
+  - Username: `admin`
+  - Password: `admin2025`
+
 ## Functionality  
 
 ### Hardware Selection:  
