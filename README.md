@@ -56,7 +56,7 @@ Before running the application on another machine, make sure you have the follow
 
 ```
 git clone https://github.com/kotovamarija/HardwareRequestPortal.git
-cd HardwareRequestPortal
+cd .\HardwareRequestPortal\HardwareRequestSPA
 ```
 
 ### 2. Running the Angular Frontend
